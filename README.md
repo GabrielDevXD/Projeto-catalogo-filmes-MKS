@@ -5,7 +5,7 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">Este projeto tem e um teste para a empresa MKS, o foco do projeto e montar catalogo de filmes, por isso escolhe este framework, o nestjs e um otimo framework para se montar cruds e fazer projetos nesse estilo, o nestj é um express por baixo dos panos usando typeScript</p>
+  <p align="center">Este projeto é um teste para a empresa MKS, o foco do projeto e montar catalogo de filmes, por isso escolhe este framework, o nestjs e um ótimo framework para se montar cruds e fazer projetos nesse estilo, o nestj é um express por baixo dos panos usando typeScript/p>
     <p align="center">
 
 </p>
@@ -15,7 +15,7 @@
 
 Para iniciar o projeto em sua maquina é necessário
 
-Postgres
+Postgres,
 node
 
 
