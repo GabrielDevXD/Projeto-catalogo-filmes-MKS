@@ -18,11 +18,11 @@ export class CreateFilmeDto {
       example: 'After Thanos, an intergalactic warlord, disintegrates half of the universe, the Avengers must reunite and assemble again to reinvigorate their trounced allies and restore balance.',
     })
     description: string;
-    @ApiProperty({ description: 'ano do jogo', example: 2019})
+    @ApiProperty({ description: 'ano do filme', example: 2019})
     @IsNumber()
     @IsPositive()
     year: number;
-    @ApiProperty({ description: 'Nota do game', example: 8})
+    @ApiProperty({ description: 'Nota do filme', example: 8})
     @IsNumber()
     @IsPositive()
     imdbScore: number;
