@@ -5,7 +5,7 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p align="center">Este projeto tem e um teste para a empresa MKS, o foco do projeto e montar catalogo de filmes, por isso escolhe este framework, o nestjs e um otimo framework para se montar cruds e fazer projetos nesse estilo, o nestj é um express por baixo dos panos usando typeScript</p>
     <p align="center">
 
 </p>
@@ -13,7 +13,11 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Para iniciar o projeto em sua maquina é necessário
+
+Postgres
+node
+
 
 ## Installation
 
@@ -49,14 +53,5 @@ $ npm run test:cov
 
 ## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Para suporte do projeto [Suporte linkedin](https://www.linkedin.com/in/gabrieldevxd/) ou [Suporte Discord](Gabriel?#0001) .
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
