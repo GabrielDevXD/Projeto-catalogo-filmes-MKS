@@ -7,10 +7,12 @@ import { GenreModule } from './genre/genre.module';
 import { ProfileModule } from './profile/profile.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { UserModule } from './user/user.module';
+import { PrismaService } from './prisma/prisma.service';
+
 
 @Module({
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, PrismaService],
   imports: [FilmesModule, AuthModule, GenreModule, ProfileModule, HomepageModule, UserModule],
 })
 export class AppModule {}
