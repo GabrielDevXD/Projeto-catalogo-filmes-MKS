@@ -24,8 +24,7 @@ export class FilmeService {
         imdbScore: createFilmeDto.imdbScore,
         trailerYoutubeUrl: createFilmeDto.trailerYoutubeUrl,
         charactersMain: createFilmeDto.charactersMain,
-
-        Genre: {
+        genres: {
           connect: {
             name: createFilmeDto.genreName,
           },
@@ -36,7 +35,7 @@ export class FilmeService {
         .create({
           data,
           include: {
-            Genre: true,
+            genres: true,
           },
         })
         .catch(this.handleError);
@@ -50,7 +49,7 @@ export class FilmeService {
   findAll() {
     return this.prisma.filmes.findMany({
       include: {
-        Genre: true,
+        genres: true,
       },
     });
   }
@@ -60,7 +59,7 @@ export class FilmeService {
         id: id,
       },
       include: {
-        Genre: true,
+        genres: true,
       },
     });
     if (!record) {
@@ -79,21 +78,23 @@ export class FilmeService {
         year: dto.year,
         imdbScore: dto.imdbScore,
         trailerYoutubeUrl: dto.trailerYoutubeUrl,
-        Genre: {
+        charactersMain: dto.charactersMain,
+        genres: {
           disconnect: {
-            name: filmeAtual.Genre[0].name,
+            name: filmeAtual.genres[0].name,
           },
           connect: {
             name: dto.genreName,
           },
         },
       };
+  
       return await this.prisma.filmes
         .update({
           where: { id },
           data,
           include: {
-            Genre: true,
+            genres: true,
           },
         })
         .catch(this.handleError);

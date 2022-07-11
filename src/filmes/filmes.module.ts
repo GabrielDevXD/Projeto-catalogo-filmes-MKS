@@ -10,4 +10,4 @@ FilmeService
   controllers: [FilmeController],
   providers: [FilmeService],
 })
-export class GamesModule {}
+export class FilmesModule {}

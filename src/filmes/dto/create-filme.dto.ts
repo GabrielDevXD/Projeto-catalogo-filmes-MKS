@@ -38,5 +38,5 @@ export class CreateFilmeDto {
     })
     @IsString()
     charactersMain :string
-  genreName?: string;
+    genreName: string;
   }

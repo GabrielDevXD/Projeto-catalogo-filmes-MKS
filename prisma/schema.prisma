@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Filmes {
-  id                String @id @default(uuid())
+  id                String   @id @default(uuid())
   charactersMain    String
   title             String
   coverImageUrl     String
@@ -16,15 +16,16 @@ model Filmes {
   year              Int
   imdbScore         Int
   trailerYoutubeUrl String
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+  genreName         String?
+  profileId         String?
+  favoritefilmeid   String?
 
-  createdAt       DateTime        @default(now()) @map("created_at")
-  updatedAt       DateTime        @updatedAt @map("updated_at")
-  Genre           Genre?          @relation(fields: [genreName], references: [name])
-  genreName       String?
-  Profile         Profile?        @relation(fields: [profileId], references: [id])
-  profileId       String?
-  favoitefilme    FavoriteFilmes? @relation(fields: [favoritefilmeid], references: [id])
-  favoritefilmeid String?
+  FavoriteFilme    FavoriteFilmes[]
+  profiles         Profile[]
+  genres           Genre[]
+  favoriteFilmesId String?
 }
 
 model Genre {
@@ -54,8 +55,8 @@ model Profile {
   id           String          @id @default(uuid())
   title        String
   imageUrl     String
-  user         User            @relation(fields: [userId], references: [id])
   userId       String          @map("user_id")
+  user         User            @relation(fields: [userId], references: [id])
   favoitefilme FavoriteFilmes?
   filme        Filmes[]
 
@@ -64,7 +65,7 @@ model Profile {
 
 model FavoriteFilmes {
   id        String   @id @default(uuid())
-  profile   Profile  @relation(fields: [profileId], references: [id])
   profileId String   @unique @map("profile_id")
+  profile   Profile  @relation(fields: [profileId], references: [id])
   filme     Filmes[]
 }

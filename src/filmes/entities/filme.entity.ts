@@ -6,4 +6,5 @@ export class Filme {
     year: number;
     trailerYoutubeUrl:string;
     charactersMain: string
+    genreName?: string;
 }
