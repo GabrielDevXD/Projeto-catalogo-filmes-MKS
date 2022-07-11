@@ -9,6 +9,7 @@ datasource db {
 
 model Filmes {
   id                String @id @default(uuid())
+  charactersMain    String
   title             String
   coverImageUrl     String
   description       String

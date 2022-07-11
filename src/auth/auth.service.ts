@@ -1,26 +1,35 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
-
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+import { PrismaService } from '../prisma/prisma.service';
+import { ResponseLogin } from './dto/login-response.dto';
+import { LoginDto } from './dto/login.dto';
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
-  }
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly jwtService: JwtService,
+  ) {}
+  async login(loginDto: LoginDto): Promise<ResponseLogin> {
+    const { email, password } = loginDto;
 
-  findAll() {
-    return `This action returns all auth`;
-  }
+    const user = await this.prisma.user.findUnique({ where: { email } });
 
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
+    if (!user) {
+      throw new UnauthorizedException('Nome de Usuario ou senha incorreta');
+    }
 
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
+    const isHashValid = await bcrypt.compare(password, user.password);
 
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+    if (!isHashValid) {
+      throw new UnauthorizedException('Nome de Usuario ou senha incorreta');
+    }
+
+    delete user.password;
+
+    return {
+      token: this.jwtService.sign({ email }),
+      user,
+    };
   }
 }

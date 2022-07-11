@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsPositive, IsString, IsUrl } from 'class-validator';
+import { IsNumber, IsPositive,  IsString, IsUrl } from 'class-validator';
 
 export class CreateFilmeDto {
     @ApiProperty({ description: 'Nome do filme',
@@ -32,4 +32,11 @@ export class CreateFilmeDto {
       example: 'Link do trailer',
     })
     trailerYoutubeUrl: string; 
+    @ApiProperty ({
+      description: 'Personagem do filme',
+      example:'Iron man'
+    })
+    @IsString()
+    charactersMain :string
+  genreName?: string;
   }
