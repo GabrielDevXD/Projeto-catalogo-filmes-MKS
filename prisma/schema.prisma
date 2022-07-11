@@ -8,14 +8,62 @@ datasource db {
 }
 
 model Filmes {
-  id                 String @id @default(uuid())
-  title              String
-  coverImageUrl      String
-  description        String
-  year               Int
-  imdbScore          Int
-  trailerYoutubeUrl  String
+  id                String @id @default(uuid())
+  title             String
+  coverImageUrl     String
+  description       String
+  year              Int
+  imdbScore         Int
+  trailerYoutubeUrl String
 
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime        @updatedAt @map("updated_at")
+  Genre           Genre?          @relation(fields: [genreName], references: [name])
+  genreName       String?
+  Profile         Profile?        @relation(fields: [profileId], references: [id])
+  profileId       String?
+  favoitefilme    FavoriteFilmes? @relation(fields: [favoritefilmeid], references: [id])
+  favoritefilmeid String?
+}
+
+model Genre {
+  name      String   @id @unique
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+  filme     Filmes[]
+
+  @@map("genre")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  name      String
+  email     String    @unique
+  password  String
+  cpf       String    @unique
+  isAdmin   Boolean   @default(false)
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  profile   Profile[]
+
+  @@map("user")
+}
+
+model Profile {
+  id           String          @id @default(uuid())
+  title        String
+  imageUrl     String
+  user         User            @relation(fields: [userId], references: [id])
+  userId       String          @map("user_id")
+  favoitefilme FavoriteFilmes?
+  filme        Filmes[]
+
+  @@map("profile")
+}
+
+model FavoriteFilmes {
+  id        String   @id @default(uuid())
+  profile   Profile  @relation(fields: [profileId], references: [id])
+  profileId String   @unique @map("profile_id")
+  filme     Filmes[]
 }
