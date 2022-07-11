@@ -13,7 +13,7 @@ export class LoginDto {
   @IsNotEmpty()
   @ApiProperty({
     description: 'Senha da conta',
-    example: 'EoPai123@.',
+    example: 'Testemks123@.',
   })
   password: string;
 }
